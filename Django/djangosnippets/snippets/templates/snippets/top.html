@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">Welcome to Django Snippets!</h1>
+    <p class="subtitle">Share your findings!</p>
+    <a class="btn btn-primary" href="{% url 'snippet_new' %}">create snippet</a>
+</div>
+{% if snippets %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>poster</th>
+            <th>post_at</th>
+            <th>title</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for snippet in snippets %}
+        <tr>
+            <th>{{ snippet.created_by.username }}</th>
+            <th>{{ snippet.created_at }}</th>
+            <th>{{ snippet.title }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>There is not snippets...</p>
+{% endif %}
+{% endblock %}
