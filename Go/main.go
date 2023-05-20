@@ -2,64 +2,32 @@ package main
 
 import (
 	"fmt"
+	"foo/foo"
 )
 
-// type Stringfy interface {
-// 	ToString() string
-// }
-
-// type Person struct {
-// 	Name string
-// 	Age int
-// }
-// func (p *Person) ToString() string {
-// 	return fmt.Sprintf("Name=%v, Age=%v", p.Name, p.Age)
-// }
-
-// type Car struct {
-// 	Number string
-// 	Model string
-// }
-// func (p *Car) ToString() string {
-// 	return fmt.Sprintf("Number=%v, Model=%v", p.Number, p.Model)
-// }
-
-type MyError struct {
-	Msg string
-	ErrCode int
+func appName() string {
+	const AppName string = "GoApp"
+	var Version string = "1.0"
+	return AppName + " " + Version
 }
 
-func (e *MyError) Error() string {
-	return e.Msg
+func Do(s string) (b string) {
+	// var b string = s
+	b = s
+	{
+		b := "bbb"
+		fmt.Println(b)
+	}
+	fmt.Println(b)
+	return b
 }
 
-// type Point struct {
-// 	A int
-// 	B string
-// }
-
-// func (p *Point) String() string {
-// 	return fmt.Sprintf("<<%v, %v>>", p.A, p.B)
-// }
 
 func main() {
-	// p := Point{100, "ABC"}
-	// fmt.Println(p)
-	// fmt.Println(p.String())
-	err := MyError{Msg: "error death", ErrCode: 1243}
-	fmt.Println(err.Error())
-	fmt.Println(err.ErrCode)
-
-	// fmt.Println(err.Msg)
-	// if ok {
-	// 	fmt.Println(e.ErrCode)
-	// }
-	// vs := []Stringfy{
-	// 	&Person{Name: "fujiki", Age: 21},
-	// 	&Car{Number: "1234", Model: "Ver3"},
-	// }
-
-	// for _, v := range vs {
-	// 	fmt.Println(v.ToString())
-	// }
+	fmt.Println(foo.Max)
+	// fmt.Println(foo.min)
+	fmt.Println(foo.ReturnMin())
+	fmt.Println(appName())
+	// fmt.Println(AppName, Version)
+	fmt.Println(Do("AAA"))
 }
