@@ -2,32 +2,21 @@ package main
 
 import (
 	"fmt"
-	"foo/foo"
+	"my-local-pkg/alib"
 )
 
-func appName() string {
-	const AppName string = "GoApp"
-	var Version string = "1.0"
-	return AppName + " " + Version
-}
-
-func Do(s string) (b string) {
-	// var b string = s
-	b = s
-	{
-		b := "bbb"
-		fmt.Println(b)
+func IsOne(i int) bool {
+	if i == 1 {
+		return true
+	} else {
+		return false
 	}
-	fmt.Println(b)
-	return b
 }
-
 
 func main() {
-	fmt.Println(foo.Max)
-	// fmt.Println(foo.min)
-	fmt.Println(foo.ReturnMin())
-	fmt.Println(appName())
-	// fmt.Println(AppName, Version)
-	fmt.Println(Do("AAA"))
+	fmt.Println(IsOne(1))
+	fmt.Println(IsOne(0))
+	s := []int{1, 2, 3, 4, 5}
+	fmt.Println(s)
+	fmt.Println(alib.Average(s))
 }
