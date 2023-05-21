@@ -2,22 +2,22 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
+	"flag"
 )
 
 func main() {
-	rand.Seed(256)
+	var (
+		max int
+		msg string
+		x   bool
+	)
 
-	fmt.Println(rand.Float64())
-	fmt.Println(rand.Float64())
-	fmt.Println(rand.Float64())
+	flag.IntVar(&max, "n", 32, "処理数の最大値")
+	flag.StringVar(&msg, "m", "", "処理メッセージ")
+	flag.BoolVar(&x, "x", false, "拡張オプション")
 
-	fmt.Println(time.Now().UnixNano())
-	rand.Seed(time.Now().UnixNano())
-	fmt.Println(rand.Intn(100))
-	fmt.Println(rand.Int())
-	fmt.Println(rand.Int31())
-	fmt.Println(rand.Int63())
-	fmt.Println(rand.Uint32())
+	flag.Parse()
+	fmt.Println("処理数の最大値 = ", max)
+	fmt.Println("処理メッセージ = ", msg)
+	fmt.Println("拡張オプション = ", x)
 }
