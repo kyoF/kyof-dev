@@ -2,68 +2,51 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"log"
+	"time"
 )
 
 func main() {
-	// f, err := os.OpenFile("foo.txt", os.O_RDONLY, 0666)
-	f, err := os.OpenFile("foo.txt", os.O_RDWR|os.O_CREATE, 0666)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer f.Close()
+	time.Sleep(3*time.Second)
+	fmt.Println("Stop 3 second")
+	// time_when := time.Date(2021, 8, 9, 0, 0, 0, 0, time.Local)
+	// now := time.Now()
+	// fmt.Println(time_when)
+	// fmt.Println(now)
 
-	bs := make([]byte, 128)
-	n, err := f.Read(bs)
-	fmt.Println(n)
-	fmt.Println(bs)
-	fmt.Println(string(bs))
-	// f, err := os.Open("foo.txt")
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
-	// defer f.Close()
+	// sub_time := time_when.Sub(now)
+	// fmt.Println(sub_time)
 
-	// bs := make([]byte, 128)
-	// n, err := f.Read(bs)
-	// fmt.Println(n)
-	// fmt.Println(string(bs))
+	// fmt.Println(now.Before(time_when))
+	// fmt.Println(now.After(time_when))
+	// fmt.Println(time_when.Before(now))
+	// fmt.Println(time_when.After(now))
+	// fmt.Println(time.Hour)
+	// fmt.Printf("%T\n", time.Hour)
+	// fmt.Println(time.Minute)
+	// fmt.Println(time.Second)
+	// fmt.Println(time.Millisecond)
+	// fmt.Println(time.Microsecond)
+	// fmt.Println(time.Nanosecond)
 
-	// bs2 := make([]byte, 128)
-	// nn, err := f.ReadAt(bs2, 10)
-	// fmt.Println(nn)
-	// fmt.Println(string(bs2))
+	// d, _ := time.ParseDuration("2h30m")
+	// fmt.Println(d)
 
-	// f, _ := os.Create("foo.txt")
-	// f.Write([]byte("Hello\n"))
-	// f.WriteAt([]byte("Golang"), 6)
-	// f.Seek(0, os.SEEK_END)
-	// f.WriteString("YaaH")
-	// f, err := os.Open("test1.txt")
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
-	// defer f.Close()
-	// fmt.Println(os.Args[0])
-	// fmt.Println(os.Args[1])
-	// fmt.Println(os.Args[2])
-	// fmt.Println(os.Args[3])
+	// now := time.Now()
+	// now = now.Add(2*time.Minute + 30*time.Second)
+	// fmt.Println(now)
+	// now := time.Now()
+	// fmt.Println(now)
 
-	// fmt.Println("length=%d\n", len(os.Args))
-	// for i, v := range os.Args {
-	// 	fmt.Println(i, v)
-	// }
-	// os.Exit(1)
-	// fmt.Println("Start")
-
-	// defer func() {
-	// 	fmt.Println("defer")
-	// }()
-	// os.Exit(0)
-
-	// _, err := os.Open("A.txt")
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
+	// time_when := time.Date(2023, 5, 7, 3, 3, 3, 0, time.Local)
+	// fmt.Println(time_when)
+	// fmt.Println(time_when.Year())
+	// fmt.Println(time_when.YearDay())
+	// fmt.Println(time_when.Month())
+	// fmt.Println(time_when.Weekday())
+	// fmt.Println(time_when.Day())
+	// fmt.Println(time_when.Hour())
+	// fmt.Println(time_when.Minute())
+	// fmt.Println(time_when.Second())
+	// fmt.Println(time_when.Nanosecond())
+	// fmt.Println(time_when.Zone())
 }
