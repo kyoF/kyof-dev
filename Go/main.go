@@ -2,51 +2,43 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"math"
 )
 
 func main() {
-	time.Sleep(3*time.Second)
-	fmt.Println("Stop 3 second")
-	// time_when := time.Date(2021, 8, 9, 0, 0, 0, 0, time.Local)
-	// now := time.Now()
-	// fmt.Println(time_when)
-	// fmt.Println(now)
+	// 切り捨て
+	fmt.Println(math.Trunc(3.14))
+	fmt.Println(math.Trunc(-3.14))
+	fmt.Println(math.Trunc(-3.8))
+	// 切り下げ
+	fmt.Println(math.Floor(3.5))
+	fmt.Println(math.Floor(-3.5))
+	// 切り上げ
+	fmt.Println(math.Ceil(3.5))
+	fmt.Println(math.Ceil(-3.5))
 
-	// sub_time := time_when.Sub(now)
-	// fmt.Println(sub_time)
+	// // 絶対値
+	// fmt.Println(math.Abs(100))
+	// fmt.Println(math.Abs(-100))
+	// // 累乗
+	// fmt.Println(math.Pow(0, 2))
+	// fmt.Println(math.Pow(2, 2))
+	// // 平方根、立法根
+	// fmt.Println(math.Sqrt(2))
+	// fmt.Println(math.Sqrt(8))
+	// // 最大値、最小値
+	// fmt.Println(math.Max(1, 3))
+	// fmt.Println(math.Min(1, 3))
 
-	// fmt.Println(now.Before(time_when))
-	// fmt.Println(now.After(time_when))
-	// fmt.Println(time_when.Before(now))
-	// fmt.Println(time_when.After(now))
-	// fmt.Println(time.Hour)
-	// fmt.Printf("%T\n", time.Hour)
-	// fmt.Println(time.Minute)
-	// fmt.Println(time.Second)
-	// fmt.Println(time.Millisecond)
-	// fmt.Println(time.Microsecond)
-	// fmt.Println(time.Nanosecond)
+	// // 円周率
+	// fmt.Println(math.Pi)
+	// // 2のルート
+	// fmt.Println(math.Sqrt2)
 
-	// d, _ := time.ParseDuration("2h30m")
-	// fmt.Println(d)
-
-	// now := time.Now()
-	// now = now.Add(2*time.Minute + 30*time.Second)
-	// fmt.Println(now)
-	// now := time.Now()
-	// fmt.Println(now)
-
-	// time_when := time.Date(2023, 5, 7, 3, 3, 3, 0, time.Local)
-	// fmt.Println(time_when)
-	// fmt.Println(time_when.Year())
-	// fmt.Println(time_when.YearDay())
-	// fmt.Println(time_when.Month())
-	// fmt.Println(time_when.Weekday())
-	// fmt.Println(time_when.Day())
-	// fmt.Println(time_when.Hour())
-	// fmt.Println(time_when.Minute())
-	// fmt.Println(time_when.Second())
-	// fmt.Println(time_when.Nanosecond())
-	// fmt.Println(time_when.Zone())
+	// fmt.Println(math.MaxFloat32)
+	// fmt.Println(math.SmallestNonzeroFloat32)
+	// fmt.Println(math.MaxFloat64)
+	// fmt.Println(math.SmallestNonzeroFloat64)
+	// fmt.Println(math.MaxInt64)
+	// fmt.Println(math.MinInt64)
 }
