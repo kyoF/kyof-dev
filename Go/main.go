@@ -2,22 +2,31 @@ package main
 
 import (
 	"fmt"
-	"flag"
+    "os"
 )
 
 func main() {
-	var (
-		max int
-		msg string
-		x   bool
-	)
+	fmt.Println("show")
+	fmt.Print("show")
+	fmt.Println("Hello!")
+    
+    fmt.Println("Hello", "World!")
 
-	flag.IntVar(&max, "n", 32, "処理数の最大値")
-	flag.StringVar(&msg, "m", "", "処理メッセージ")
-	flag.BoolVar(&x, "x", false, "拡張オプション")
+    fmt.Printf("%s\n", "Hello")
+    fmt.Printf("%s#v\n", "Hello")
 
-	flag.Parse()
-	fmt.Println("処理数の最大値 = ", max)
-	fmt.Println("処理メッセージ = ", msg)
-	fmt.Println("拡張オプション = ", x)
+    s := fmt.Sprintf("Hello")
+    s1 := fmt.Sprintf("%v\n", "Hello")
+    s2 := fmt.Sprintln("Hello")
+    fmt.Println(s)
+    fmt.Println(s1)
+    fmt.Println(s2)
+
+    fmt.Fprint(os.Stdout, "Hello")
+    fmt.Fprintf(os.Stdout, "Hello")
+    fmt.Fprintln(os.Stdout, "Hello")
+
+    f, _ := os.Create("test1.txt")
+    defer f.Close()
+    fmt.Fprintln(f, "Fprint")
 }
