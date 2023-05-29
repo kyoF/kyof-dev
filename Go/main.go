@@ -1,32 +1,50 @@
 package main
 
 import (
-	"fmt"
+	// "fmt"
     "os"
+	"log"
 )
 
 func main() {
-	fmt.Println("show")
-	fmt.Print("show")
-	fmt.Println("Hello!")
-    
-    fmt.Println("Hello", "World!")
+	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime|log.Lshortfile)
+	logger.Println("message")
+	log.Println("message")	
 
-    fmt.Printf("%s\n", "Hello")
-    fmt.Printf("%s#v\n", "Hello")
+	_, err := os.Open("afsdasdf")
+	if err != nil {
+		// log.Fatalln("Exit", err)
+		logger.Fatalln("Exit", err)
+	}
 
-    s := fmt.Sprintf("Hello")
-    s1 := fmt.Sprintf("%v\n", "Hello")
-    s2 := fmt.Sprintln("Hello")
-    fmt.Println(s)
-    fmt.Println(s1)
-    fmt.Println(s2)
+	// log.SetOutput(os.Stdout)
 
-    fmt.Fprint(os.Stdout, "Hello")
-    fmt.Fprintf(os.Stdout, "Hello")
-    fmt.Fprintln(os.Stdout, "Hello")
+	// log.SetFlags(log.LstdFlags)
+	// log.Println("A")
+	// log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
+	// log.Println("B")
+	// log.SetFlags(log.Ltime | log.Lshortfile)
+	// log.Println("C")
+	// log.SetFlags(log.LstdFlags)
+	// log.SetPrefix("[LOG]")
+	// log.Println("E")
+	
+	// log.Print("log\n")
+	// log.Println("Log2")
+	// log.Printf("log%d\n", 3)
 
-    f, _ := os.Create("test1.txt")
-    defer f.Close()
-    fmt.Fprintln(f, "Fprint")
+	// log.Fatal("log\n")
+	// log.Fatalln("log2")
+	// log.Fatalf("log%d\n", 3)
+
+	// log.Panic("log\n")
+	// log.Panicln("log2\n")
+	// log.Panicf("log%d\n", 3)
+
+	// f, err := os.Create("test.log")
+	// if err != nil {
+	// 	return
+	// }
+	// log.SetOutput(f)
+	// log.Println("ファイルに書き込む")
 }
