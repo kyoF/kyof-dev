@@ -2,35 +2,23 @@ package main
 
 import (
     "fmt"
-    "context"
-    "time"
+    "net/url"
 )
 
-func longProcess(ctx context.Context, ch chan string) {
-    fmt.Println("start")
-    time.Sleep(2 * time.Second)
-    fmt.Println("end")
-    ch <- "return result"
-}
-
 func main() {
-    ch := make(chan string)
-    ctx := context.Background()
-    ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
-    defer cancel()
-    go longProcess(ctx, ch)
+    u, _ := url.Parse("https://example.com/search?a=1&b=2#top")
+    fmt.Println(u.Scheme)
+    fmt.Println(u.Host)
+    fmt.Println(u.Path)
+    fmt.Println(u.RawQuery)
+    fmt.Println(u.Fragment)
+    fmt.Println(u.Query())
 
-    L:for {
-        select {
-        case <-ctx.Done():
-            fmt.Println("#####ERROR#######")
-            fmt.Println(ctx.Err())
-            break L
-        case s := <-ch:
-            fmt.Println(s)
-            fmt.Println("SUCCESS!")
-            break L
-        }
-    }
-    fmt.Println("exit loop")
+    url := &url.URL{}
+    url.Scheme = "https:"
+    url.Host = "google.com"
+    q := url.Query()
+    q.Set("q", "Golang")
+    url.RawQuery = q.Encode()
+    fmt.Println(url)
 }
