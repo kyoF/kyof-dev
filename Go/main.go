@@ -1,26 +1,30 @@
 package main
 
 import (
-    "net/http"
-    "log"
-    "template"
+    "fmt"
+
+    "gopkg.in/go-ini/ini.v1"
 )
 
-// type MyHandler struct{}
+type ConfigList struct {
+    Port int
+    DbName string
+    SQLDriver string
+}
 
-// func (h *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-//     fmt.Fprintf(w, "Hello World!")
-// }
+var Config ConfigList
 
-func top(w http.ResponseWriter, r *http.Request) {
-    t, err := template.ParseFiles("tmpl.html")
-    if err != nil {
-        log.Println(err)
+func init() {
+    cfg, _ := ini.Load("config.ini")
+    Config = ConfigList{
+        Port: cfg.Section("web").Key("port").MustInt(8080),
+        DbName: cfg.Section("db").Key("name").MustString("example.com"),
+        SQLDriver: cfg.Section("db").Key("driver").String(),
     }
-    t.Execute(w, "Hello World with Golang!!!")
 }
 
 func main() {
-    http.HandleFunc("/top", top)
-    http.ListenAndServe(":8080", nil)
+    fmt.Printf("Port = %v\n", Config.Port)
+    fmt.Printf("DbName = %v\n", Config.DbName)
+    fmt.Printf("SQLDriver = %v\n", Config.SQLDriver)
 }
