@@ -1,61 +1,68 @@
 package main
 
 import (
-	"encoding/json"
     "fmt"
-    "log"
-    "time"
+    "sort"
 )
 
-type A struct {}
-
-type User struct {
-    ID int `json:"id,omitempty"`
-    Name string `json:"name,omitempty"`
-    Email string `json:"email"`
-    Created time.Time `json:"created"`
-    A *A `json:"A"`
+type Entry struct {
+    Name string
+    Value int
 }
 
-func (u User) MarshalJSON() ([]byte, error) {
-    v, err := json.Marshal(&struct {
-        Name string
-    }{
-        Name: "Mr. " + u.Name,
-    })
-    return v, err
+type List []Entry
+
+func (l List) Len() int {
+    return len(l)
 }
 
-func (u *User) UnmarshalJSON(b []byte) error {
-    type User2 struct {
-        Name string
+func (l List) Swap(i, j int) {
+    l[i], l[j] = l[j], l[i]
+}
+
+func (l List) Less(i, j int) bool {
+    if l[i].Value == l[j].Value {
+        return (l[i].Name < l[j].Name)
+    } else {
+        return (l[i].Value < l[j].Value)
     }
-    var u2 User2
-    err := json.Unmarshal(b, &u2)
-    if err != nil {
-        fmt.Println(err)
-    }
-    u.Name = u2.Name+"!"
-    return err
 }
 
 func main() {
-    u := new(User)
-    u.ID = 1
-    u.Name = "fujiki"
-    u.Email = "fujiki@fujiki.com"
-    u.Created = time.Now()
-
-    bs, err := json.Marshal(u)
-    if err != nil {
-        log.Fatal(err)
+    m := map[string]int{"S":1, "J":4, "A":3, "N":3}
+    lt := List{}
+    for k, v := range m {
+        e := Entry{k, v}
+        lt = append(lt, e)
     }
-    fmt.Println(string(bs))
+    sort.Sort(lt)
+    fmt.Println(lt)
+    fmt.Println("-----")
 
-    fmt.Println("%T\n", bs)
-    u2 := new(User)
-    if err := json.Unmarshal(bs, &u2); err != nil {
-        fmt.Println(err)
+    sort.Sort(sort.Reverse(lt))
+    fmt.Println(lt)
+
+    el := []Entry {
+        {"A",20},
+        {"C",30},
+        {"c",2},
+        {"d",1},
+        {"B",320},
+        {"Aa",80},
+        {"AA",220},
+        {"X",80},
+        {"D",830},
+        {"F",2},
     }
-    fmt.Println(u2)
+    fmt.Println(el)
+
+    sort.Slice(el, func(i, j int) bool { return el[i].Name < el[j].Name })
+    sort.Slice(el, func(i, j int) bool { return el[i].Value < el[j].Value })
+    fmt.Println("-----")
+    fmt.Println(el)
+
+    sort.SliceStable(el, func(i, j int) bool { return el[i].Name < el[j].Name })
+    sort.SliceStable(el, func(i, j int) bool { return el[i].Value < el[j].Value })
+    fmt.Println("-----")
+    fmt.Println(el)
 }
